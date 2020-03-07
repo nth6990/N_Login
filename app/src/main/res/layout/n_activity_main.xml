@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".N_MainActivity"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kokoa Talk"
+        android:textSize="50dp"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        />
+    <EditText
+        android:id="@+id/nId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="ID를 입력하세요"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:layout_margin="50dp"
+        android:padding="10dp"
+        android:background="@drawable/n_btnbackground"
+        />
+
+    <EditText
+        android:id="@+id/nPw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="비밀번호를 입력하세요"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/n_btnbackground"
+        android:padding="10dp"
+        />
+    <Button
+        android:id="@+id/nLoginBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="SEND"
+        android:textSize="30dp"
+        android:background="@drawable/n_btnbackground"
+        android:padding="10dp"
+        />
+
+</LinearLayout>

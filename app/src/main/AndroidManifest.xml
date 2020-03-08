@@ -16,6 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".N_SignUp"/>
+        <activity android:name=".N_SearchAccount"/>
     </application>
 
 </manifest>

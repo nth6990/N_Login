@@ -1,15 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
     <TextView
+        android:id="@+id/nTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="50dp"
-        android:text="hi">
+        android:text="회원가입"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingBottom="30dp"
+        >
 
     </TextView>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/n11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID:  "
+        app:layout_constraintTop_toBottomOf="@+id/nTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingBottom="30dp"
+        />
+    <EditText
+        android:id="@+id/n12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toRightOf="@+id/n11"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/nTitle"
+        android:layout_marginBottom="30dp"
+        />
+    <TextView
+        android:id="@+id/n21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PW:  "
+        app:layout_constraintTop_toBottomOf="@+id/n11"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingBottom="30dp"
+        />
+    <EditText
+        android:id="@+id/n22"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toRightOf="@+id/n11"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/n11"
+        android:layout_marginBottom="30dp"
+        />
+    <TextView
+        android:id="@+id/n31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이름:"
+        app:layout_constraintTop_toBottomOf="@+id/n21"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="30dp"
+        android:layout_marginLeft="27dp"
+        android:paddingBottom="30dp"
+        />
+    <EditText
+        android:id="@+id/n32"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toRightOf="@+id/n11"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/n21"
+        android:layout_marginBottom="30dp"
+        />
+    <TextView
+        android:id="@+id/n41"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hint:  "
+        app:layout_constraintTop_toBottomOf="@+id/n31"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingBottom="30dp"
+        />
+    <Button
+        android:id="@+id/n42"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="선택하세요"
+        android:background="@drawable/n_btnbackground"
+        app:layout_constraintLeft_toRightOf="@+id/n11"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/n31"
+        android:layout_marginBottom="30dp"
+        />
+    <TextView
+        android:id="@+id/n51"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="답:  "
+        app:layout_constraintTop_toBottomOf="@+id/n41"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingBottom="30dp"
+        />
+    <EditText
+        android:id="@+id/n52"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toRightOf="@+id/n11"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/n41"
+        android:layout_marginBottom="30dp"
+        />
+    <Button
+        android:id="@+id/nSignUpbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEND"
+        app:layout_constraintTop_toBottomOf="@+id/n51"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center"
+        />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

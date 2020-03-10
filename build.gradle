@@ -3,7 +3,7 @@
 buildscript {
     
     repositories {
-        google()
+
         jcenter()
         
     }
@@ -15,12 +15,27 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
+buildscript {
+
+    repositories {
+        // Check that you have the following line (if not, add it):
+        google()  // Google's Maven repository
+    }
+
+    dependencies {
+        // ...
+
+        // Add the following line:
+        classpath 'com.google.gms:google-services:4.2.0'  // Google Services plugin
+    }
+}
+
 
 allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 

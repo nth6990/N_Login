@@ -15,6 +15,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -31,42 +32,53 @@ public class N_MainActivity extends AppCompatActivity {
         nId = findViewById(R.id.nId);
         nPw = findViewById(R.id.nPw);
         Button btn = findViewById(R.id.nLoginBtn);
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = firebaseDatabase.getReference("information"); //핸드폰 번호로 할 것
+        final DatabaseReference databaseReference;
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        boolean isAccountInvalid = true;
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            if(dataSnapshot.getValue() == null){
-                                Toast.makeText(N_MainActivity.this, "nono", Toast.LENGTH_SHORT).show();
-                            }
-                            else if (nId.getText().toString().equals(dataSnapshot.getValue(Item.class).id) && nPw.getText().toString().equals(dataSnapshot.getValue(Item.class).pw)) {
-                                //Intent intent = new Intent(getApplicationContext(), P_MainActivity.class);
-                                //startActivity(intent);
-                                Toast.makeText(N_MainActivity.this, "right", Toast.LENGTH_SHORT).show();
-                                isAccountInvalid = false;
-                                break;
+                    databaseReference.child(nId.getText().toString()).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Item item = dataSnapshot.getValue(Item.class);
+                            if(item == null){
+                                Toast.makeText(N_MainActivity.this, "no info", Toast.LENGTH_SHORT).show();
+                            } else {
+                                if(item.pw.equals(nPw.getText().toString())){
+                                    Toast.makeText(N_MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(N_MainActivity.this, "ohno", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
-                        if (isAccountInvalid) {
-                            Toast.makeText(N_MainActivity.this, "wrong ID or Password", Toast.LENGTH_SHORT).show();
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
                         }
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-
+                    });
             }
-        });
+            });
+
+//                        boolean isAccountInvalid = true;
+//                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+//                            if(dataSnapshot.getValue() == null){
+//                                Toast.makeText(N_MainActivity.this, "nono", Toast.LENGTH_SHORT).show();
+//                            }
+//                            else if (nId.getText().toString().equals(dataSnapshot.getValue(Item.class).id) && nPw.getText().toString().equals(dataSnapshot.getValue(Item.class).pw)) {
+//                                //Intent intent = new Intent(getApplicationContext(), P_MainActivity.class);
+//                                //startActivity(intent);
+//                                Toast.makeText(N_MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+//                                isAccountInvalid = false;
+//                                break;
+//                            }
+//                        }
+//                        if (isAccountInvalid) {
+//                            Toast.makeText(N_MainActivity.this, "wrong ID or Password", Toast.LENGTH_SHORT).show();
+//                        }
+
+
 
 
 //                for(int i=0;i<list.size();i++) {
@@ -99,6 +111,5 @@ public class N_MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 }

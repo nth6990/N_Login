@@ -19,7 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 public class N_SignUp extends AppCompatActivity{
 
     EditText id, pw, name, q_answer;
-    String indentifier = "developer";
 
 
 
@@ -32,22 +31,24 @@ public class N_SignUp extends AppCompatActivity{
         pw = findViewById(R.id.n22); //재확인 구현
         name = findViewById(R.id.n32);
         Button btn = findViewById(R.id.n42);
+        //힌트 구현 스피너
         q_answer = findViewById(R.id.n52);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //토스트
             }
         });
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        final DatabaseReference myRef = firebaseDatabase.getReference(indentifier);
+        final DatabaseReference databaseReference;
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         Button nSignUpbtn = findViewById(R.id.nSignUpbtn);
         nSignUpbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Item item = new Item(id.getText().toString(), pw.getText().toString(), name.getText().toString(), 0, q_answer.getText().toString());
-                myRef.setValue(item);
+                Item item = new Item(pw.getText().toString(), name.getText().toString(), 0, q_answer.getText().toString());
+                databaseReference.child(id.getText().toString()).setValue(item);
+                finish();
             }
         });
 

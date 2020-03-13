@@ -1,7 +1,6 @@
 package com.example.n_login;
 
 public class Item {
-    String id;
     String pw;
     String name;
     int q_num;
@@ -11,21 +10,13 @@ public class Item {
 
     }
 
-    public Item(String Id, String Pw, String name, int q_num, String q_answer){
-        this.id = Id;
+    public Item(String Pw, String name, int q_num, String q_answer){
         this.pw = Pw;
         this.name = name;
         this.q_num = q_num;
         this.q_answer = q_answer;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getPw() {
         return pw;

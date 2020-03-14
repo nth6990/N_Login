@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class N_MainActivity extends AppCompatActivity {
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     EditText nId, nPw;
     TextView nSignUp, nSearchAccount;
 
@@ -32,8 +33,6 @@ public class N_MainActivity extends AppCompatActivity {
         nId = findViewById(R.id.nId);
         nPw = findViewById(R.id.nPw);
         Button btn = findViewById(R.id.nLoginBtn);
-        final DatabaseReference databaseReference;
-        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,12 +42,12 @@ public class N_MainActivity extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             Item item = dataSnapshot.getValue(Item.class);
                             if(item == null){
-                                Toast.makeText(N_MainActivity.this, "no info", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(N_MainActivity.this, "계정이 없습니다", Toast.LENGTH_SHORT).show();
                             } else {
                                 if(item.pw.equals(nPw.getText().toString())){
-                                    Toast.makeText(N_MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(N_MainActivity.this, "정상적으로 로그인 되었습니다", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(N_MainActivity.this, "ohno", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(N_MainActivity.this, "비밀번호가 다릅니다", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
@@ -60,38 +59,6 @@ public class N_MainActivity extends AppCompatActivity {
                     });
             }
             });
-
-//                        boolean isAccountInvalid = true;
-//                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                            if(dataSnapshot.getValue() == null){
-//                                Toast.makeText(N_MainActivity.this, "nono", Toast.LENGTH_SHORT).show();
-//                            }
-//                            else if (nId.getText().toString().equals(dataSnapshot.getValue(Item.class).id) && nPw.getText().toString().equals(dataSnapshot.getValue(Item.class).pw)) {
-//                                //Intent intent = new Intent(getApplicationContext(), P_MainActivity.class);
-//                                //startActivity(intent);
-//                                Toast.makeText(N_MainActivity.this, "right", Toast.LENGTH_SHORT).show();
-//                                isAccountInvalid = false;
-//                                break;
-//                            }
-//                        }
-//                        if (isAccountInvalid) {
-//                            Toast.makeText(N_MainActivity.this, "wrong ID or Password", Toast.LENGTH_SHORT).show();
-//                        }
-
-
-
-
-//                for(int i=0;i<list.size();i++) {
-//                    if(nId.getText().toString().equals(list.get(i).id)&&nPw.getText().toString().equals(list.get(i).pw)){
-//                        //Intent intent = new Intent(getApplicationContext(), P_MainActivity.class);
-//                        //startActivity(intent);
-//                        break;
-//                    }
-//                    else if(i == list.size()-1) {
-//                        Toast.makeText(N_MainActivity.this, "wrong id or password", Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-
 
 
 

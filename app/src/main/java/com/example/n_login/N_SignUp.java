@@ -5,8 +5,11 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +25,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class N_SignUp extends AppCompatActivity{
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
     EditText id, pw, name, q_answer;
+
+    ArrayList<String> arrayList = new ArrayList<String>();
+
+    Spinner spinner;
 
 
 
@@ -41,7 +50,7 @@ public class N_SignUp extends AppCompatActivity{
         checkOverlap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                databaseReference.child(id.getText().toString()).addValueEventListener(new ValueEventListener() {
+                databaseReference.child(id.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Item item = dataSnapshot.getValue(Item.class);
@@ -68,15 +77,14 @@ public class N_SignUp extends AppCompatActivity{
 
         pw = findViewById(R.id.n22); //재확인 구현
         name = findViewById(R.id.n32);
-        Button btn = findViewById(R.id.n42);
-        //힌트 구현 스피너
+        arrayList.add("가장 기억에 남는 여행지는?");
+        arrayList.add("가장 좋아하는 음식은?");
+        arrayList.add("어릴 적 가장 좋아했던 장난감은?");
+        ArrayAdapter arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, arrayList);
+
+        spinner = findViewById(R.id.n42);
+        spinner.setAdapter(arrayAdapter);
         q_answer = findViewById(R.id.n52);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //토스트
-            }
-        });
 
 
         Button nSignUpbtn = findViewById(R.id.nSignUpbtn);
@@ -90,7 +98,7 @@ public class N_SignUp extends AppCompatActivity{
                         if(item != null) {
                             Toast.makeText(N_SignUp.this, "아이디를 다시 확인해주세요", Toast.LENGTH_SHORT).show();
                         } else {
-                            Item nitem = new Item(pw.getText().toString(), name.getText().toString(), 0, q_answer.getText().toString());
+                            Item nitem = new Item(pw.getText().toString(), name.getText().toString(), spinner.getSelectedItemPosition(), q_answer.getText().toString());
                             databaseReference.child(id.getText().toString()).setValue(nitem);
                             Toast.makeText(N_SignUp.this, "정상적으로 회원가입 되었습니다", Toast.LENGTH_LONG).show();
                             finish();

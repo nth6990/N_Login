@@ -5,17 +5,99 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <TextView
+        android:id="@+id/searchAccountTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="아이디 또는 비밀번호 찾기"
+        android:textSize="50dp"
+        android:text="계정 찾기"
         android:gravity="center"
-        android:layout_marginTop="30dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:paddingBottom="30dp"
+        android:paddingTop="30dp"
         >
 
     </TextView>
+
+    <TextView
+        android:id="@+id/searchAccountTextView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID:  "
+        app:layout_constraintTop_toBottomOf="@+id/searchAccountTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingBottom="30dp"
+        />
+    <EditText
+        android:id="@+id/searchAccountEditText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toRightOf="@+id/searchAccountTextView1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        app:layout_constraintTop_toBottomOf="@+id/searchAccountTitle"
+        android:layout_marginBottom="30dp"
+        />
+
+    <TextView
+        android:id="@+id/searchAccountTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="hint:  "
+        app:layout_constraintTop_toBottomOf="@+id/searchAccountTextView1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingBottom="30dp"
+        />
+    <Spinner
+        android:id="@+id/searchAccountSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:background="@drawable/n_btnbackground"
+        app:layout_constraintLeft_toRightOf="@+id/searchAccountTextView2"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/searchAccountTextView1"
+        android:layout_marginBottom="30dp"
+        />
+    <TextView
+        android:id="@+id/searchAccountTextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="답:  "
+        app:layout_constraintTop_toBottomOf="@+id/searchAccountTextView2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingBottom="30dp"
+        />
+    <EditText
+        android:id="@+id/searchAccountEditText2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        app:layout_constraintLeft_toRightOf="@+id/searchAccountTextView3"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        app:layout_constraintTop_toBottomOf="@+id/searchAccountTextView2"
+        android:layout_marginBottom="30dp"
+        />
+    <Button
+        android:id="@+id/searchAccountbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SEND"
+        app:layout_constraintTop_toBottomOf="@+id/searchAccountTextView3"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:gravity="center"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,7 +30,7 @@ import java.util.ArrayList;
 public class N_SignUp extends AppCompatActivity{
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-    EditText id, pw, name, q_answer;
+    EditText id, pw, name, q_answer, pw_check;
 
     ArrayList<String> arrayList = new ArrayList<String>();
 
@@ -75,7 +75,9 @@ public class N_SignUp extends AppCompatActivity{
             }
         });
 
-        pw = findViewById(R.id.n22); //재확인 구현
+        pw = findViewById(R.id.n22);
+        pw_check = findViewById(R.id.checkPwEditText);
+
         name = findViewById(R.id.n32);
         arrayList.add("가장 기억에 남는 여행지는?");
         arrayList.add("가장 좋아하는 음식은?");
@@ -96,7 +98,9 @@ public class N_SignUp extends AppCompatActivity{
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Item item = dataSnapshot.getValue(Item.class);
                         if(item != null) {
-                            Toast.makeText(N_SignUp.this, "아이디를 다시 확인해주세요", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(N_SignUp.this, "이미 가입된 아이디입니다", Toast.LENGTH_SHORT).show();
+                        } else if (!(pw.getText().toString().equals(pw_check.getText().toString()))){
+                            Toast.makeText(N_SignUp.this, "입력한 비밀번호와 재입력한 비밀번호가 다릅니다", Toast.LENGTH_SHORT).show();
                         } else {
                             Item nitem = new Item(pw.getText().toString(), name.getText().toString(), spinner.getSelectedItemPosition(), q_answer.getText().toString());
                             databaseReference.child(id.getText().toString()).setValue(nitem);

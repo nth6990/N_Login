@@ -42,6 +42,7 @@
         android:layout_marginBottom="30dp"
         android:background="@drawable/n_btnbackground"
         android:padding="10dp"
+        android:inputType="textPassword"
         />
     <Button
         android:id="@+id/nLoginBtn"

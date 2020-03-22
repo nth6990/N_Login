@@ -5,16 +5,18 @@ public class Item {
     String name;
     int q_num;
     String q_answer;
+    String birth;
 
     public Item(){
 
     }
 
-    public Item(String Pw, String name, int q_num, String q_answer){
+    public Item(String Pw, String name, int q_num, String q_answer, String birth){
         this.pw = Pw;
         this.name = name;
         this.q_num = q_num;
         this.q_answer = q_answer;
+        this.birth = birth;
     }
 
 
@@ -49,4 +51,13 @@ public class Item {
     public void setQ_answer(String q_answer) {
         this.q_answer = q_answer;
     }
+
+    public void setBirth(String birth) {
+        this.birth = birth;
+    }
+
+    public String getBirth() {
+        return birth;
+    }
 }
+

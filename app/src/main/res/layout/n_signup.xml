@@ -168,12 +168,35 @@
         app:layout_constraintTop_toBottomOf="@+id/n41"
         android:layout_marginBottom="30dp"
         />
+    <TextView
+        android:id="@+id/nDateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="생일:  "
+        app:layout_constraintTop_toBottomOf="@+id/n51"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingBottom="30dp"
+        />
+    <Button
+        android:id="@+id/nDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/n51"
+        app:layout_constraintLeft_toRightOf="@+id/n11"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="30dp"
+        android:textSize="20dp"
+        />
     <Button
         android:id="@+id/nSignUpbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SEND"
-        app:layout_constraintTop_toBottomOf="@+id/n51"
+        app:layout_constraintTop_toBottomOf="@+id/nDate"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:gravity="center"

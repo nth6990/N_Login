@@ -38,7 +38,7 @@ public class NsimpleLogin extends AppCompatActivity {
                 public void onClick(View v) {
                     simpleLoginPw.append(temp);
                     if(simpleLoginPw.getText().length() == 4){
-                        finish();
+                        finish(); //비밀번호 맞으면 넘어가는 걸로 변경
                     }
                 }
             });

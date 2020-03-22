@@ -1,26 +1,21 @@
 package com.example.n_login;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Intent;
+import android.content.ClipData;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class N_SignUp extends AppCompatActivity{
+public class NSignUp extends AppCompatActivity{
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
     EditText id, pw, name, q_answer, pw_check;
@@ -53,7 +48,7 @@ public class N_SignUp extends AppCompatActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.n_signup);
+        setContentView(R.layout.n_sign_up);
 
         id = findViewById(R.id.n12); //아이디 중복 확인 구현
 
@@ -65,14 +60,14 @@ public class N_SignUp extends AppCompatActivity{
                 databaseReference.child(id.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Item item = dataSnapshot.getValue(Item.class);
+                        NItem item = dataSnapshot.getValue(NItem.class);
                         if(item != null) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(N_SignUp.this);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(NSignUp.this);
                             builder.setTitle("알림").setMessage("이미 가입된 아이디입니다");
                             AlertDialog alertDialog = builder.create();
                             alertDialog.show();
                         } else {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(N_SignUp.this);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(NSignUp.this);
                             builder.setTitle("알림").setMessage("사용할 수 있는 아이디입니다");
                             AlertDialog alertDialog = builder.create();
                             alertDialog.show();
@@ -118,7 +113,7 @@ public class N_SignUp extends AppCompatActivity{
         nDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(N_SignUp.this, onDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(NSignUp.this, onDateSetListener, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -130,15 +125,15 @@ public class N_SignUp extends AppCompatActivity{
                 databaseReference.child(id.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Item item = dataSnapshot.getValue(Item.class);
+                        NItem item = dataSnapshot.getValue(NItem.class);
                         if(item != null) {
-                            Toast.makeText(N_SignUp.this, "이미 가입된 아이디입니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NSignUp.this, "이미 가입된 아이디입니다", Toast.LENGTH_SHORT).show();
                         } else if (!(pw.getText().toString().equals(pw_check.getText().toString()))){
-                            Toast.makeText(N_SignUp.this, "입력한 비밀번호와 재입력한 비밀번호가 다릅니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NSignUp.this, "입력한 비밀번호와 재입력한 비밀번호가 다릅니다", Toast.LENGTH_SHORT).show();
                         } else {
-                            Item nitem = new Item(pw.getText().toString(), name.getText().toString(), spinner.getSelectedItemPosition(), q_answer.getText().toString(), nDate.getText().toString());
+                            NItem nitem = new NItem(pw.getText().toString(), name.getText().toString(), spinner.getSelectedItemPosition(), q_answer.getText().toString(), nDate.getText().toString());
                             databaseReference.child(id.getText().toString()).setValue(nitem);
-                            Toast.makeText(N_SignUp.this, "정상적으로 회원가입 되었습니다", Toast.LENGTH_LONG).show();
+                            Toast.makeText(NSignUp.this, "정상적으로 회원가입 되었습니다", Toast.LENGTH_LONG).show();
                             finish();
                         }
                     }

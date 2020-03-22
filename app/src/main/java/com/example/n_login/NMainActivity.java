@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,12 +28,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
-public class N_MainActivity extends AppCompatActivity {
+public class NMainActivity extends AppCompatActivity {
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     EditText nId, nPw;
     TextView nSignUp, nSearchAccount;
@@ -55,7 +51,7 @@ public class N_MainActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser() != null) {
-            Intent intent = new Intent(getApplication(), N_SearchAccount.class); //상근이 액티비티로 추후 변경
+            Intent intent = new Intent(getApplication(), NSearchAccount.class); //상근이 액티비티로 추후 변경
             startActivity(intent);
             finish();
         }
@@ -82,14 +78,14 @@ public class N_MainActivity extends AppCompatActivity {
                     databaseReference.child(nId.getText().toString()).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Item item = dataSnapshot.getValue(Item.class);
+                            NItem item = dataSnapshot.getValue(NItem.class);
                             if(item == null){
-                                Toast.makeText(N_MainActivity.this, "계정이 없습니다", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(NMainActivity.this, "계정이 없습니다", Toast.LENGTH_SHORT).show();
                             } else {
                                 if(item.pw.equals(nPw.getText().toString())){
-                                    Toast.makeText(N_MainActivity.this, "정상적으로 로그인 되었습니다", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(NMainActivity.this, "정상적으로 로그인 되었습니다", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    Toast.makeText(N_MainActivity.this, "비밀번호가 다릅니다", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(NMainActivity.this, "비밀번호가 다릅니다", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
@@ -109,14 +105,14 @@ public class N_MainActivity extends AppCompatActivity {
         nSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), N_SignUp.class);
+                Intent intent = new Intent(getApplicationContext(), NSignUp.class);
                 startActivity(intent);
             }
         });
         nSearchAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), N_SearchAccount.class);
+                Intent intent = new Intent(getApplicationContext(), NSearchAccount.class);
                 startActivity(intent);
             }
         });
@@ -157,7 +153,7 @@ public class N_MainActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
 
-                            Toast.makeText(N_MainActivity.this, "연결에 실패했습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(NMainActivity.this, "연결에 실패했습니다", Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
 
@@ -167,7 +163,7 @@ public class N_MainActivity extends AppCompatActivity {
     }
     private void updateUI(FirebaseUser user) { //update ui code here
         if (user != null) {
-            Intent intent = new Intent(this, N_SearchAccount.class); //추후 상근이 액티비티로 변경
+            Intent intent = new Intent(this, NSearchAccount.class); //추후 상근이 액티비티로 변경
             startActivity(intent);
             finish();
         }

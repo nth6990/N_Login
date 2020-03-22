@@ -1,17 +1,17 @@
 package com.example.n_login;
 
-public class Item {
+public class NItem {
     String pw;
     String name;
     int q_num;
     String q_answer;
     String birth;
 
-    public Item(){
+    public NItem(){
 
     }
 
-    public Item(String Pw, String name, int q_num, String q_answer, String birth){
+    public NItem(String Pw, String name, int q_num, String q_answer, String birth){
         this.pw = Pw;
         this.name = name;
         this.q_num = q_num;

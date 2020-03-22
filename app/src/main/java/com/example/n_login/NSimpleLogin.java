@@ -1,7 +1,6 @@
 package com.example.n_login;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,15 +8,13 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-
-public class NsimpleLogin extends AppCompatActivity {
+public class NSimpleLogin extends AppCompatActivity {
     TextView simpleLoginPw;
     Button[] buttons = new Button[9];
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.n_simplelogin);
+        setContentView(R.layout.n_simple_login);
 
         simpleLoginPw = findViewById(R.id.simpleLoginPw);
 
